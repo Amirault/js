@@ -254,5 +254,19 @@ describe("array", () => {
         expect(array.slice(-2, -1)).toEqual([2])
       })
     })
+
+    describe("converting array", () => {
+      it('should convert iterable object to array', () => {
+        const iterableObject = {
+          '0': 'zero',
+          '1': 'one',
+          '2': 'two',
+          '3': 'three',
+          '4': 'four',
+          length: 5
+        };
+        expect(Array.prototype.slice.call(iterableObject)).toEqual(['zero', 'one', 'two', 'three', 'four'])
+      })
+    })
   })
 });
