@@ -195,4 +195,64 @@ describe("array", () => {
       );
     });
   });
+  describe("slice", () => {
+
+    describe("no start and end of slice defined", () => {
+      it("should have nothing when empty array", () => {
+        expect([].slice()).toEqual([])
+      })
+
+      it("should not mutate (no inplace) when applying slice", () => {
+        const array = [1,2];
+        const sliceResult = array.slice(0);
+        expect(sliceResult).toEqual([1, 2])
+        expect(array).toEqual([1,2])
+      })
+
+      it("should have same array when no start and end defined", () => {
+        expect([1, 2, 3].slice()).toEqual([1, 2, 3])
+      })
+    })
+
+    describe("only start of slice defined", () => {
+      it("should take all from start", () => {
+        expect([1, 2, 3].slice(0)).toEqual([1, 2, 3])
+      })
+
+      it("should take last from start = length - 1", () => {
+        expect([1, 2, 3].slice(length-1)).toEqual([3])
+      })
+
+      it("should all from start at middle", () => {
+        expect([1, 2, 3].slice(1)).toEqual([2, 3])
+      })
+    })
+    describe("start and end of slice defined", () => {
+      it("should only take between : start <= elements < end", () => {
+        const array = [1, 2, 3];
+        expect(array.slice(1, 2)).toEqual([2])
+      })
+
+      it("should take nothing when same start and end", () => {
+        const array = [1, 2, 3];
+        expect(array.slice(1, 1)).toEqual([])
+      })
+
+      it("should take nothing when start > end", () => {
+        const array = [1, 2, 3];
+        expect(array.slice(2, 0)).toEqual([])
+      })
+
+      it("should take from start to the length + end when end < 0", () => {
+        const array = [1, 2, 3];
+        const end = -2
+        expect(array.slice(0, end)).toEqual(array.slice(0, array.length + end))
+      })
+
+      it("should slice when start < 0 and end < 0 and start < end (index start by the end of the array) ", () => {
+        const array = [1, 2, 3];
+        expect(array.slice(-2, -1)).toEqual([2])
+      })
+    })
+  })
 });
