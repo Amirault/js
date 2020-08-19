@@ -11,7 +11,7 @@ describe("array", () => {
       expect(array).toEqual([]);
     });
 
-    describe("when having only one element on the array", () => {
+    describe("removing when having only one element on the array", () => {
       it("should remove the first element on start index = 0", () => {
         const array = [0];
         expect(array.splice(0)).toEqual([0]);
@@ -61,7 +61,7 @@ describe("array", () => {
       });
     });
 
-    describe("when having multiple element on the array", () => {
+    describe("removing when having multiple element on the array", () => {
       it("should remove all the elements on start index = 0", () => {
         const array = [0, 1, 2];
         expect(array.splice(0)).toEqual([0, 1, 2]);
@@ -106,6 +106,50 @@ describe("array", () => {
         expect(array).toEqual([2]);
       });
     });
+
+    describe("remove with insertion", () => {
+      it("should remove the first element and replace it", () => {
+        const array = [0];
+        expect(array.splice(0, 1, "newElement")).toEqual([0])
+        expect(array).toEqual(["newElement"])
+      })
+
+      it("should remove nothing and insert in the middle", () => {
+        const array = [0, 2];
+        expect(array.splice(1, 0, 1)).toEqual([])
+        expect(array).toEqual([0,1,2])
+      })
+
+      it("should remove all elements and replace all", () => {
+        const array = ['A', 'B'];
+        expect(array.splice(0, 2, 'X', 'X')).toEqual(['A', 'B'])
+        expect(array).toEqual(['X', 'X'])
+      })
+
+      it("should insert element at the head", () => {
+        const array = ['B', 'C'];
+        expect(array.splice(0, 0, 'A')).toEqual([])
+        expect(array).toEqual(['A', 'B', 'C'])
+      })
+
+      it("should insert element at the middle", () => {
+        const array = ['A', 'C'];
+        expect(array.splice(1, 0, 'B')).toEqual([])
+        expect(array).toEqual(['A', 'B', 'C'])
+      })
+
+      it("should insert element at the end", () => {
+        const array = ['A', 'B'];
+        expect(array.splice(100, 0, 'C')).toEqual([])
+        expect(array).toEqual(['A', 'B', 'C'])
+      })
+
+      it("should insert element starting by the end", () => {
+        const array = ['A', 'C'];
+        expect(array.splice(-1, 0, 'B')).toEqual([])
+        expect(array).toEqual(['A', 'B', 'C'])
+      })
+    })
 
     describe("splice examples", () => {
       it.each`
