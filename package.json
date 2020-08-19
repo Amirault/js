@@ -1,0 +1,15 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "js by tests",
+  "main": "index.js",
+  "repository": "git@github.com:Amirault/js.git",
+  "author": "Tony Amirault <tony.amirault@tinyclues.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^26.4.0"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
