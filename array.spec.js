@@ -5,7 +5,7 @@ describe("array", () => {
       expect(array.splice(0)).toEqual([0]);
     });
 
-    it("should mutate the original array", () => {
+    it("should mutate (in place operation) the original", () => {
       const array = [0];
       array.splice(0);
       expect(array).toEqual([]);
