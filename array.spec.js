@@ -1,4 +1,4 @@
-describe("array", () => {
+describe.skip("array", () => {
   describe("splice", () => {
     it("should give the removed element", () => {
       const array = [0];
